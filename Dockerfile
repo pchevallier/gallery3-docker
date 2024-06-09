@@ -41,10 +41,7 @@ RUN \
   git clone https://github.com/pchevallier/gallery3.git && \ 
   cd /gallery3 && git checkout $GALLERY_VERSION && rm -rf .git && \
   cd / && \
-  git clone https://github.com/pchevallier/gallery3-contrib.git && \
-  mv /gallery3-contrib/3.0/modules/* /gallery3/modules/ && \
-  mv /gallery3-contrib/3.0/themes/* /gallery3/themes/ && \
-  rm -rf /gallery3-contrib && \
+  composer install && \
   rm -rf /var/www/* && \
   mkdir -p /var/www/html && \
   cp -r /gallery3/. /var/www/html && \
