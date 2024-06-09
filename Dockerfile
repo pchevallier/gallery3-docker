@@ -40,8 +40,8 @@ ARG GALLERY_VERSION=3.1.5
 RUN \
   git clone https://github.com/pchevallier/gallery3.git && \ 
   cd /gallery3 && git checkout $GALLERY_VERSION && rm -rf .git && \
-  cd / && \
   composer install && \
+  cd / && \
   rm -rf /var/www/* && \
   mkdir -p /var/www/html && \
   cp -r /gallery3/. /var/www/html && \
