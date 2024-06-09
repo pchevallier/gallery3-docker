@@ -1,4 +1,4 @@
-FROM ubuntu:impish
+FROM ubuntu:jammy
 
 ARG PHP_VER=8.0
 ENV PHP_VER=8.0
