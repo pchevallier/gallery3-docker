@@ -1,5 +1,9 @@
 FROM ubuntu:jammy
 
+ARG PHP_VER=8.1
+ENV PHP_VER=8.1
+
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ UTC
 
@@ -62,9 +66,9 @@ RUN chmod 0777 /entrypoint.sh && \
     a2enmod rewrite && \
     mv /site.conf /etc/apache2/sites-enabled && \
     rm /etc/apache2/sites-enabled/000-default.conf && \
-    php_version = $(php -v | grep -oP '^PHP \K[0-9]+\.[0-9]') && \
-    cat /php.settings >> /etc/php/${php_version}/cli/php.ini && \
-    cat /php.settings >> /etc/php/${php_version}/apache2/php.ini
+    php -v | grep -oP '^PHP \K[0-9]+\.[0-9]' && \
+    cat /php.settings >> /etc/php/${PHP_VER}/cli/php.ini && \
+    cat /php.settings >> /etc/php/${PHP_VER}/apache2/php.ini
 
 EXPOSE 80
 
