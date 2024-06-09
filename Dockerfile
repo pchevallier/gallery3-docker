@@ -38,10 +38,10 @@ RUN set -ex && \
 ARG GALLERY_VERSION=3.1.5
 
 RUN \
-  git clone https://github.com/bwdutton/gallery3.git && \ 
+  git clone https://github.com/pchevallier/gallery3.git && \ 
   cd /gallery3 && git checkout $GALLERY_VERSION && rm -rf .git && \
   cd / && \
-  git clone https://github.com/bwdutton/gallery3-contrib.git && \
+  git clone https://github.com/pchevallier/gallery3-contrib.git && \
   mv /gallery3-contrib/3.0/modules/* /gallery3/modules/ && \
   mv /gallery3-contrib/3.0/themes/* /gallery3/themes/ && \
   rm -rf /gallery3-contrib && \
