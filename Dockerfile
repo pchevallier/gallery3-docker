@@ -1,8 +1,5 @@
 FROM ubuntu:jammy
 
-ARG PHP_VER=8.0
-ENV PHP_VER=8.0
-
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ UTC
 
@@ -40,7 +37,6 @@ ARG GALLERY_VERSION=3.1.5
 RUN \
   git clone https://github.com/pchevallier/gallery3.git && \ 
   cd /gallery3 && git checkout $GALLERY_VERSION && rm -rf .git && \
-  composer install && \
   cd / && \
   rm -rf /var/www/* && \
   mkdir -p /var/www/html && \
@@ -66,8 +62,9 @@ RUN chmod 0777 /entrypoint.sh && \
     a2enmod rewrite && \
     mv /site.conf /etc/apache2/sites-enabled && \
     rm /etc/apache2/sites-enabled/000-default.conf && \
-    cat /php.settings >> /etc/php/${PHP_VER}/cli/php.ini && \
-    cat /php.settings >> /etc/php/${PHP_VER}/apache2/php.ini
+    php_version = $(php -v | grep -oP '^PHP \K[0-9]+\.[0-9]') && \
+    cat /php.settings >> /etc/php/${php_version}/cli/php.ini && \
+    cat /php.settings >> /etc/php/${php_version}/apache2/php.ini
 
 EXPOSE 80
 
