@@ -5,7 +5,7 @@ on:
 
 jobs:
   buildx:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       -
         name: Checkout
@@ -47,6 +47,6 @@ jobs:
         with:
           src: ghcr.io/${{ github.repository }}:latest
           dst: |
-            docker.io/bwdutton/gallery3:3
-            docker.io/bwdutton/gallery3:3.1.5
-            docker.io/bwdutton/gallery3:latest
+            docker.io/pchevallier/gallery3:3
+            docker.io/pchevallier/gallery3:3.1.5
+            docker.io/pchevallier/gallery3:latest
